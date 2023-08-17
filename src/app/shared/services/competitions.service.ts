@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map, from } from 'rxjs';
+
+import { LeagueInterface } from '../types/league.interface';
+import { ResponseLeaguesInterface } from '../types/responses.interface';
+import { ResponseWithMockLeagues } from '../mocks/response-leagues-mock';
 
 @Injectable({ providedIn: 'root' })
 export class CompetitionsService {
@@ -10,15 +14,21 @@ export class CompetitionsService {
     this.collectionSize = 0;
   }
 
-  getLeagues(page: number, itemsPerPage: number): Observable<any> {
-    const leagues = this.http
-      .get('http://api.football-data.org/v2/competitions/')
-      .pipe(
-        tap((res) => {
-          console.log('res', res);
-          this.collectionSize = 173;
-        }),
-      );
+  getLeagues(
+    page: number,
+    itemsPerPage: number,
+  ): Observable<LeagueInterface[]> {
+    // const leagues = this.http
+    //   .get<ResponseLeaguesInterface>(
+    //     'http://api.football-data.org/v2/competitions/',
+    //   )
+    //   .pipe(
+    //     tap((res) => {
+    //       this.collectionSize = res.count;
+    //     }),
+    //   );
+    const leagues = from(new Array(ResponseWithMockLeagues));
+    this.collectionSize = ResponseWithMockLeagues.count;
     return this.getPageItems(leagues, page, itemsPerPage);
   }
 
@@ -29,12 +39,12 @@ export class CompetitionsService {
   }
 
   private getPageItems(
-    collection: Observable<any>,
+    collection: Observable<ResponseLeaguesInterface>,
     page: number,
     itemsPerPage: number,
-  ) {
+  ): Observable<LeagueInterface[]> {
     return collection.pipe(
-      map((res) => {
+      map((res: ResponseLeaguesInterface) => {
         const startIndex = itemsPerPage * (page - 1);
         return res.competitions.slice(startIndex, startIndex + itemsPerPage);
       }),

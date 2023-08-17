@@ -1,5 +1,23 @@
-<p>leagues works!</p>
+<div class="wrapper">
+  <app-header class="header"></app-header>
 
-<div class="card flex justify-content-center">
-  <p-paginator [rows]="10" [totalRecords]="collectionSize" [rowsPerPageOptions]="[10,20,30]"></p-paginator>
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#128269; Поиск">
+
+  <div class="body" *ngIf="searchText">
+    <app-one-league *ngFor="let league of leagues | filter: searchText; trackBy: trackByFunc" [id]="league.id" [nameOfLeague]="league.name" [countryOfLeague]="league.area.name" [image]="league.area.ensignUrl"></app-one-league>
+  </div>
+
+  <div class="body" *ngIf="!searchText">
+    <app-one-league *ngFor="let league of leagues | filter: searchText; trackBy: trackByFunc" [id]="league.id" [nameOfLeague]="league.name" [countryOfLeague]="league.area.name" [image]="league.area.ensignUrl"></app-one-league>
+  </div>
+
+  <div class="footer">
+    <mat-paginator [length]="collectionSize"
+                   [pageSize]="itemsPerPage"
+                   class="mat-elevation-z8"
+                   aria-label="Select page">
+    </mat-paginator>
+  </div>
 </div>
+
+

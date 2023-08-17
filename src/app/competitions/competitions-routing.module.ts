@@ -8,8 +8,14 @@ export const CompetitionsRoutingModule: Routes = [
     component: LeaguesComponent,
   },
   {
-    path: 'calendar-of-leagues',
-    component: CalendarOfLeaguesComponent,
+    path: 'calendar-of-league',
+    children: [
+      {
+        path: ':id',
+        component: CalendarOfLeaguesComponent,
+        data: { breadcrumb: { alias: 'name' } },
+      },
+    ],
   },
   {
     path: '**',

@@ -1,0 +1,15 @@
+@import '../leagues/leagues.component';
+
+.section-with-datepickers {
+  width: 100%;
+  display: flex;
+  max-height: 30px;
+}
+
+.status {
+  background-color: #007bff;
+  color: #FFFFFF;
+  padding: 3px 5px;
+  margin-left: 5px;
+  border-radius: 10px;
+}
