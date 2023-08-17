@@ -1,10 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-one-league',
   templateUrl: './one-league.component.html',
-  styleUrls: ['./one-league.component.scss']
+  styleUrls: ['./one-league.component.scss'],
 })
 export class OneLeagueComponent {
+  @Input() id: number;
 
+  @Input() nameOfLeague: string;
+
+  @Input() countryOfLeague: string;
+
+  @Input() image: string | null;
+
+  constructor(private router: Router) {}
+
+  goToCalendarOfLeague() {
+    this.router.navigate([`calendar-of-league/${this.id}`], {
+      queryParams: { name: `${this.nameOfLeague}` },
+    });
+  }
 }

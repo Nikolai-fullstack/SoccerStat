@@ -48,7 +48,9 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "no-useless-constructor": 0,
+        "@typescript-eslint/no-useless-constructor": 0
       }
     },
     {

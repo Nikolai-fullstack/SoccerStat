@@ -2,7 +2,7 @@ export interface LeagueInterface {
   id: number;
   area: Area;
   name: string;
-  code: string;
+  code: string | null;
   emblemUrl: string | null;
   plan: string;
   currentSeason: CurrentSeason;
@@ -21,7 +21,7 @@ interface CurrentSeason {
   id: number;
   startDate: string;
   endDate: string;
-  currentMatchday: number;
+  currentMatchday: number | null;
   winner: Winner | null;
 }
 

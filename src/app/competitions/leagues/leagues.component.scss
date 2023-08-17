@@ -1,0 +1,39 @@
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+}
+
+.container {
+  padding: 80px 40px;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer {
+  bottom: calc(100vh - 80px);
+}
+
+.form-control {
+  width: 280px;
+  margin: 100px 0 0 20px;
+  border: 1px solid rgb(206, 206, 206);
+  border-radius: 5px;
+  height: 30px;
+  padding: 5px 10px;
+}
+.form-control::placeholder  {
+  color: #cecece;
+  font-size: 18px;
+}

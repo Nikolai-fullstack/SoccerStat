@@ -1,1 +1,5 @@
-<p>one-league works!</p>
+<div (click)="goToCalendarOfLeague()" class="card mat-elevation-z8">
+  <img *ngIf="image" [src]="image" width="100" class="image">
+  <h2 class="name">{{ nameOfLeague }}</h2>
+  <span>{{ countryOfLeague }}</span>
+</div>
