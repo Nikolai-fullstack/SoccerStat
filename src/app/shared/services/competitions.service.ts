@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { ResponseLeaguesInterface } from '../types/responses.interface';
+import {
+  ResponseLeaguesInterface,
+  ResponseMatchesInterface,
+} from '../types/responses.interface';
 
 @Injectable({ providedIn: 'root' })
 export class CompetitionsService {
@@ -14,7 +17,7 @@ export class CompetitionsService {
   }
 
   getCalendarOfLeague(id: number) {
-    return this.http.get(
+    return this.http.get<ResponseMatchesInterface>(
       `http://api.football-data.org/v2/competitions/${id}/matches`,
     );
   }

@@ -26,7 +26,7 @@ export interface Odds {
 }
 
 export interface Score {
-  winner: string;
+  winner: string | null;
   duration: string;
   fullTime: FullTime;
   halfTime: HalfTime;
@@ -35,13 +35,13 @@ export interface Score {
 }
 
 export interface FullTime {
-  homeTeam: number;
-  awayTeam: number;
+  homeTeam: number | null;
+  awayTeam: number | null;
 }
 
 export interface HalfTime {
-  homeTeam: number;
-  awayTeam: number;
+  homeTeam: number | null;
+  awayTeam: number | null;
 }
 
 export interface ExtraTime {

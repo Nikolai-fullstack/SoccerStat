@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-one-league',
@@ -15,7 +16,10 @@ export class OneLeagueComponent {
 
   @Input() image: string | null;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
 
   goToCalendarOfLeague() {
     this.router.navigate([`calendar-of-league/${this.id}`], {
