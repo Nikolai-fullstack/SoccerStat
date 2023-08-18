@@ -8,7 +8,7 @@ export interface ResponseLeaguesInterface {
 }
 
 export interface ResponseMatchesInterface {
-  count: 24;
+  count: number;
   filters: object;
   competition: object;
   matches: MatchInterface[];
