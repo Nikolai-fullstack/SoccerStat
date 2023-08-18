@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs';
 import { CompetitionsService } from '../../shared/services/competitions.service';
 import { MatchInterface } from '../../shared/types/match.interface';
 import { MatchesMock } from '../../shared/mocks/matches-mock';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-calendar-of-leagues',
@@ -17,11 +19,13 @@ export class CalendarOfLeaguesComponent implements OnInit, OnDestroy {
 
   public name: string;
 
-  public rows: unknown;
+  public data: any;
 
   public mockData: MatchInterface[];
 
   subs: Subscription[];
+
+  @ViewChild('paginator') paginator: MatPaginator;
 
   constructor(
     private breadcrumbService: BreadcrumbService,
@@ -35,9 +39,14 @@ export class CalendarOfLeaguesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.competitionService.getCalendarOfLeague(this.id).subscribe((rows) => {
-      this.rows = rows;
-    });
+    this.competitionService
+      .getCalendarOfLeague(this.id)
+      .subscribe((dataSource) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        this.data = new MatTableDataSource(dataSource);
+        this.data.paginator = this.paginator;
+      });
   }
 
   ngOnDestroy() {
