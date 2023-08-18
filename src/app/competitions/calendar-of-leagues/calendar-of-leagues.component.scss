@@ -1,9 +1,15 @@
 @import '../leagues/leagues.component';
 
+.body {
+  display: block;
+  margin-top: 100px;
+}
+
 .section-with-datepickers {
   width: 100%;
   display: flex;
   max-height: 30px;
+  font-size: 12px;
 }
 
 .status {
@@ -12,4 +18,23 @@
   padding: 3px 5px;
   margin-left: 5px;
   border-radius: 10px;
+  max-width: 90px;
+  text-align: center;
+}
+
+:host ::ng-deep.mat-paginator .mat-paginator-container{
+  justify-content: flex-start;
+}
+
+::ng-deep .breadcrumb {
+  font-size: 16px;
+  padding: 30px 0;
+}
+
+.mat-column-date-status {
+  min-width: 250px;
+}
+
+.mat-column-opponents {
+  min-width: 400px;
 }

@@ -4,6 +4,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 import { CompetitionsService } from '../../shared/services/competitions.service';
 import { LeagueInterface } from '../../shared/types/league.interface';
+import {MockLeagues} from "../../shared/mocks/league-mock";
 
 @Component({
   selector: 'app-leagues',
@@ -35,14 +36,17 @@ export class LeaguesComponent implements OnInit, OnDestroy {
   constructor(private competitionService: CompetitionsService) {}
 
   ngOnInit() {
-    const sub = this.competitionService
-      .getLeaguesApi()
-      .subscribe((response) => {
-        this.countOfLeagues = response.count;
-        this.leagues = response.competitions;
-        this.getSliceLeagues(0, this.itemsPerPage);
-      });
-    this.subs.push(sub);
+    // const sub = this.competitionService
+    //   .getLeaguesApi()
+    //   .subscribe((response) => {
+    //     this.countOfLeagues = response.count;
+    //     this.leagues = response.competitions;
+    //     this.getSliceLeagues(0, this.itemsPerPage);
+    //   });
+    // this.subs.push(sub);
+    this.leagues = MockLeagues;
+    this.getSliceLeagues(0, this.itemsPerPage);
+    this.countOfLeagues = 46;
   }
 
   ngOnDestroy() {
