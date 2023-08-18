@@ -1,21 +1,18 @@
 <div class="wrapper">
   <app-header class="header"></app-header>
 
-  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#128269; Поиск">
+  <input class="form-control" type="text" name="search" (input)="searchLeagues()" [(ngModel)]="searchText" autocomplete="off" placeholder="&#128269; Поиск">
 
-  <div class="body" *ngIf="searchText">
-    <app-one-league *ngFor="let league of leagues | filter: searchText; trackBy: trackByFunc" [id]="league.id" [nameOfLeague]="league.name" [countryOfLeague]="league.area.name" [image]="league.area.ensignUrl"></app-one-league>
-  </div>
-
-  <div class="body" *ngIf="!searchText">
-    <app-one-league *ngFor="let league of leagues | filter: searchText; trackBy: trackByFunc" [id]="league.id" [nameOfLeague]="league.name" [countryOfLeague]="league.area.name" [image]="league.area.ensignUrl"></app-one-league>
+  <div class="body">
+    <app-one-league *ngFor="let league of pageItems; trackBy: trackByFunc" [id]="league.id" [nameOfLeague]="league.name" [countryOfLeague]="league.area.name" [image]="league.area.ensignUrl"></app-one-league>
   </div>
 
   <div class="footer">
-    <mat-paginator [length]="collectionSize"
+    <mat-paginator #page [length]="countOfLeagues"
                    [pageSize]="itemsPerPage"
-                   class="mat-elevation-z8"
-                   aria-label="Select page">
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="OnPageChange($event)"
+                   class="mat-elevation-z8" >
     </mat-paginator>
   </div>
 </div>

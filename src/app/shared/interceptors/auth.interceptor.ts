@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -20,7 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const isApiRequest = request.url.startsWith(basicCompetitionsUrl);
 
-    if (isApiRequest) {
+    if (isApiRequest && isDevMode()) {
       request = request.clone({
         setHeaders: {
           'X-Auth-Token': environment.apiKey,
